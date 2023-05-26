@@ -4,7 +4,7 @@ import AppContext from '../context';
 
 function Favorites({ onAddToFavorite }) {
   const { favorites } = React.useContext(AppContext);
-
+  // Верстка компонента Header
   return (
     <div className="content p-40">
       <div className="d-flex mb-40 justify-between align-center">

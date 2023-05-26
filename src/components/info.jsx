@@ -3,6 +3,7 @@ import AppContext from '../context';
 
 const Info = ({ imageUrl, title, description }) => {
   const { setCardOpened } = React.useContext(AppContext);
+  // Верстка компонента info
   return (
     <div className="cartEmpty d-flex align-center justify-center flex-column flex">
       <img className="mb-20" width={120} height={120} src={imageUrl} alt="" />

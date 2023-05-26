@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAuth } from '../hooks/useAuth';
 import AppContext from '../context';
 function Card({
   id,
@@ -13,19 +14,23 @@ function Card({
   const { isItemAdded } = React.useContext(AppContext);
   const [isFavorite, setIsFavorite] = React.useState(favorited);
   const obj = { id, parentId: id, imageUrl, price, title };
-
+  // функция изменние кнопки
   const onClickPlus = () => {
     onPlus(obj);
   };
+  // функция изменние кнопки
   const onClickFavorite = () => {
     onFavorite(obj);
     setIsFavorite(!isFavorite);
   };
+  const { isAuth } = useAuth();
+  // Верстка компонента Card
   return (
     <div className="card">
-      <div className="favorite" onClick={onClickFavorite}>
+      <div className="favorite">
         {onFavorite && (
           <img
+            onClick={onClickFavorite}
             src={isFavorite ? '/img/superliked.svg' : '/img/heart.svg'}
             alt=""
           />

@@ -1,3 +1,4 @@
+// Стили для всего сайта
 body {
   margin: 0;
   font-family: 'Inter', system-ui;
@@ -198,4 +199,55 @@ header {
       }
     }
   }
+}
+.enter-form {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 300px;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px #ccc;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 32px;
+}
+.form-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 0 10px 0;
+  background-color: transparent;
+  padding-bottom: 20px;
+}
+.form-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #0071f0;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 5px;
+}
+.error {
+  color: red;
+  font-size: 14px;
+}
+.form-button:focus,
+.form-button:hover {
+  background-color: rgb(22, 123, 106);
+}
+.form-inp {
+  border: none;
+}
+.problems-form {
+  padding: 10px;
+  margin-left: 30px;
+}
+.main-div {
+  text-align: center;
+
+  padding-bottom: 20px;
 }

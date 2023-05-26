@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Info from './info';
 import axios from 'axios';
 import useCart from '../hooks/useCart';
+import Form from './Form';
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
+  // Достаем необходимые пропсы
   const { cartItems, setCartItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
@@ -11,7 +13,7 @@ function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
   const onClickOrder = async () => {
     try {
       const { data } = await axios.post(
-        'https://63f7f8c36b93730c1234a6a4.mockapi.io/orders',
+        'https://646bcea77d3c1cae4ce44e01.mockapi.io/orders',
         {
           items: cartItems,
         }
@@ -31,7 +33,7 @@ function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
       alert('Ошибка при создании заказа :(');
     }
   };
-
+  // Верстка компонента Drawer
   return (
     <div className="overlay">
       <div className="drawer">
@@ -46,8 +48,8 @@ function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
         </h2>
 
         {items.length > 0 ? (
-          <div>
-            <div className="items">
+          <div className="d-flex flex-column flex">
+            <div className="items flex">
               {items.map((obj) => (
                 <div className="cartItem d-flex align-center mb-20">
                   <img
@@ -83,6 +85,7 @@ function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
                   <b>1074 руб. </b>
                 </li>
               </ul>
+              {/* <Form></Form> */}
               <button onClick={onClickOrder} className="greenButton">
                 Оформите заказ <img src="/img/arrow.svg" alt="arrow" />
               </button>
