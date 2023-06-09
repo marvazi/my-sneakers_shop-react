@@ -3,12 +3,15 @@ import Info from './info';
 import axios from 'axios';
 import useCart from '../hooks/useCart';
 import Form from './Form';
+import OrderForm from './OrderForm';
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
   // Достаем необходимые пропсы
   const { cartItems, setCartItems, totalPrice } = useCart();
   const [isOrderComplete, setIsOrderComplete] = React.useState(false);
   const [orderId, setOrderId] = React.useState(null);
+  const [visible, setVisible] = React.useState(false);
+  const [adress, setAdress] = useState('');
 
   const onClickOrder = async () => {
     try {
@@ -93,11 +96,54 @@ function Drawer({ onCloseCart, onRemovedItem, items = [], opened }) {
           </div>
         ) : (
           <Info
-            title={isOrderComplete ? 'Заказ оформлен!' : 'Корзина пустая'}
+            title={
+              isOrderComplete ? (
+                <div>
+                  <div className="main-div">
+                    <div className="enter-form">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          placeholder="Введите ФИО получателя"
+                          className="form-input"
+                        />
+                        <input
+                          type="phone"
+                          placeholder="Введите номер телефона получателя"
+                          className="form-input"
+                        />
+                        <input
+                          type="email"
+                          placeholder="Введите почту получателя"
+                          className="form-input"
+                        />
+
+                        <input
+                          value={adress}
+                          onChange={(e) => setAdress(e.target.value)}
+                          type="text"
+                          placeholder="Введите адрес получателя"
+                          className="form-input"
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => setVisible(true)}
+                        className="form-button"
+                      >
+                        Закзать
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                'Корзина пустая'
+              )
+            }
             description={
-              isOrderComplete
-                ? `Ваш заказ #${orderId} скоро буден передан курьеру`
-                : 'Добавьте хотя бы одну пару кроссовок,что бы оформить заказ.'
+              isOrderComplete && visible == true
+                ? `Ваш заказ #${orderId},по адресу:  ${adress} скоро буден передан курьеру`
+                : ''
             }
             imageUrl={
               isOrderComplete ? '/img/complete-order.jpg' : '/img/empty.jpg'

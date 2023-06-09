@@ -10,6 +10,7 @@ const Login = () => {
   const { push } = useHistory();
   const handleLogin = (email, password) => {
     const auth = getAuth();
+
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
@@ -24,6 +25,7 @@ const Login = () => {
       })
       .catch(console.error);
   };
+
   return (
     <div className="main-div">
       <Form title="Войти" handleClick={handleLogin}></Form>

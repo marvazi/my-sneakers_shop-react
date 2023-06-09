@@ -21,7 +21,7 @@ const SignUp = () => {
         push('/');
       })
 
-      .catch(console.error);
+      .catch(alert.error);
   };
   return (
     <div>

@@ -15,6 +15,11 @@ const Form = ({ title, handleClick }) => {
             placeholder="email"
             className="form-input"
           />
+          {email.includes('@') == false ? (
+            <span className="error">Адрес должен содержать символ '@'</span>
+          ) : (
+            ''
+          )}
           <input
             type="password"
             value={pass}
@@ -22,9 +27,18 @@ const Form = ({ title, handleClick }) => {
             placeholder="password"
             className="form-input"
           />
+          {pass.length < 8 ? (
+            <span className="error">
+              пароль должен составлять минимум 8 символов
+            </span>
+          ) : (
+            ''
+          )}
         </div>
+
         <button
           className="form-button"
+          disabled={email == 0 && pass.length < 8 ? true : false}
           onClick={() => handleClick(email, pass)}
         >
           {title}
